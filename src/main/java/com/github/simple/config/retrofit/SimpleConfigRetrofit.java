@@ -54,7 +54,7 @@ public class SimpleConfigRetrofit {
 		new SimpleConfigRetrofit().run(args);
 	}
 
-	private void run(String[] args) {
+	public void run(String[] args) {
 		LogConfig.defaultConfig();
 		CmdLineParser parser = new CmdLineParser(this);
 		try {
