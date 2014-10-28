@@ -9,12 +9,12 @@
 		<version>7</version>
 	</parent>
 
-	<groupId>com.github.simple.config.retrofit</groupId>
+	<groupId>com.github.skrethel</groupId>
 	<artifactId>simple-config-retrofit</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>simple-config-retrofit</name>
+	<name>Simple Config Retrofit</name>
 	<url>https://github.com/Skrethel/simple-config-retrofit</url>
 
 	<properties>
@@ -93,7 +93,7 @@
 				<version>1.0.2</version>
 				<configuration>
 					<services>
-						<service>com.github.simple.config.retrofit.constraint.ConstraintValidator</service>
+						<service>com.github.skrethel.simple.config.retrofit.constraint.ConstraintValidator</service>
 					</services>
 				</configuration>
 				<executions>
@@ -111,7 +111,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.github.simple.config.retrofit.SimpleConfigRetrofit</mainClass>
+							<mainClass>com.github.skrethel.simple.config.retrofit.SimpleConfigRetrofit</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
