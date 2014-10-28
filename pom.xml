@@ -16,6 +16,27 @@
 
 	<name>Simple Config Retrofit</name>
 	<url>https://github.com/Skrethel/simple-config-retrofit</url>
+	<scm>
+		<connection>scm:git@github.com:Skrethel/simple-config-retrofit.git</connection>
+		<developerConnection>scm:git@github.com:Skrethel/simple-config-retrofit.git</developerConnection>
+		<url>git@github.com:Skrethel/simple-config-retrofit.git</url>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>MIT</name>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Skrethel</name>
+		<url>https://github.com/Skrethel</url>
+	</organization>
+
+	<issueManagement>
+		<system>GitHub Issues Manager</system>
+		<url>https://github.com/Skrethel/simple-config-retrofit/issues</url>
+	</issueManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
