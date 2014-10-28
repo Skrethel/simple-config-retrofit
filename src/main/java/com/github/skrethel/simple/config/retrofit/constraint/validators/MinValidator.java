@@ -9,20 +9,20 @@ import java.util.Map;
 public class MinValidator implements ConstraintValidator {
 
 	@Override public void validate(Map<String, String> inputParams, String value) throws ValidationException {
-		int intValue;
+		long longValue;
 		try {
-			intValue = Integer.valueOf(value);
+			longValue = Long.valueOf(value);
 		} catch (NumberFormatException e) {
 			throw new ValidationException("Invalid integer value " + value);
 		}
 		String min = inputParams.get("min");
-		int minValue;
+		long minValue;
 		try {
-			minValue = Integer.valueOf(min);
+			minValue = Long.valueOf(min);
 		} catch (NumberFormatException e) {
-			throw new ValidationException("Invalid specification of minimum value" + value);
+			throw new ValidationException("Invalid specification of minimum value " + min);
 		}
-		if (intValue < minValue) {
+		if (longValue < minValue) {
 			throw new ValidationException("Value " + value + " is lower than allowed minimum " + min);
 		}
 	}

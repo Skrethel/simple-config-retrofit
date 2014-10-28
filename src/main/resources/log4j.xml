@@ -16,7 +16,7 @@
 	<appender name="errorConsole" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.err"/>
 		<layout class="org.apache.log4j.EnhancedPatternLayout">
-			<param name="ConversionPattern" value="%m%n %throwable{none}"/>
+			<param name="ConversionPattern" value="%throwable{none}%m%n"/>
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="ERROR" />

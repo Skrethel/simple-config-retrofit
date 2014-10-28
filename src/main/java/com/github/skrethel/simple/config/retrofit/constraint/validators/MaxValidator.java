@@ -9,20 +9,20 @@ import java.util.Map;
 public class MaxValidator implements ConstraintValidator {
 
 	@Override public void validate(Map<String, String> inputParams, String value) throws ValidationException {
-		int intValue;
+		long longValue;
 		try {
-			intValue = Integer.valueOf(value);
+			longValue = Long.valueOf(value);
 		} catch (NumberFormatException e) {
 			throw new ValidationException("Invalid integer value " + value);
 		}
 		String max = inputParams.get("max");
-		int maxValue;
+		long maxValue;
 		try {
-			maxValue = Integer.valueOf(max);
+			maxValue = Long.valueOf(max);
 		} catch (NumberFormatException e) {
-			throw new ValidationException("Invalid specification of maximum value" + value);
+			throw new ValidationException("Invalid specification of maximum value " + max);
 		}
-		if (intValue > maxValue) {
+		if (longValue > maxValue) {
 			throw new ValidationException("Value " + value + " is lower than allowed maximum " + max);
 		}
 	}

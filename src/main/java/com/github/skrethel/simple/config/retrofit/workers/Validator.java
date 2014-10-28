@@ -15,16 +15,16 @@ public class Validator {
 
 	private static final Logger LOGGER = Logger.getLogger(Validator.class);
 
-	public void retrofit(ConfigSource configSource, SchemaSource schemaSource,
+	public void validate(ConfigSource configSource, SchemaSource schemaSource,
 		SchemaConstraintValidator validator) throws ValidatorException {
 		try {
 			Ini config = configSource.getConfig();
 			ConfigSchema schema = schemaSource.getSchema();
 			validator.validate(schema, config);
 		} catch (GetException e) {
-			throw new ValidatorException("Cannot generate config file from schema: " + e.getMessage(), e);
+			throw new ValidatorException("Cannot validate config file - input file read error. Reason : " + e.getMessage(), e);
 		} catch (ValidationException e) {
-			throw new ValidatorException("Cannot write config file generated from schema: " + e.getMessage(), e);
+			throw new ValidatorException("Validation failed. Error: " + e.getMessage(), e);
 		}
 	}
 }

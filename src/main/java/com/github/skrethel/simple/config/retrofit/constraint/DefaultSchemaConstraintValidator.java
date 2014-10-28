@@ -49,7 +49,12 @@ public class DefaultSchemaConstraintValidator implements SchemaConstraintValidat
 				throw new ValidationException("Unable to find validator with type: " + constraint.getType());
 			}
 			for (String value : values) {
-				itemValidator.validate(constraint.getParams(), value);
+				try {
+					itemValidator.validate(constraint.getParams(), value);
+				} catch (ValidationException e) {
+					throw new ValidationException("Validation failed for item with group " + item.getGroup() +
+						" and name " + item.getName() + ", validator: " + constraint.getType() + ", error: " + e.getMessage(), e);
+				}
 			}
 		}
 		return list;

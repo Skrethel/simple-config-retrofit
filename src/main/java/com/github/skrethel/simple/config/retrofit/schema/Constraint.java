@@ -46,7 +46,7 @@ public class Constraint {
 
 	@JsonAnySetter
 	private void setUnknownProperty(String key, JsonNode value) {
-		params.put(key, value.textValue());
+		params.put(key, value.asText());
 	}
 
 	public void addParam(String key, String value) {

@@ -51,10 +51,11 @@ public class SimpleConfigRetrofit {
 	private boolean help = false;
 
 	public static void main(String[] args) {
-		new SimpleConfigRetrofit().run(args);
+		int status = new SimpleConfigRetrofit().run(args);
+		System.exit(status);
 	}
 
-	public void run(String[] args) {
+	public int run(String[] args) {
 		LogConfig.defaultConfig();
 		CmdLineParser parser = new CmdLineParser(this);
 		try {
@@ -87,20 +88,24 @@ public class SimpleConfigRetrofit {
 				Validator validator = new Validator();
 				ConfigFileSource configSource = new ConfigFileSource(configFile);
 				SchemaFileSource schemaSource = new SchemaFileSource(schemaFile);
-				validator.retrofit(configSource, schemaSource, new DefaultSchemaConstraintValidator());
+				validator.validate(configSource, schemaSource, new DefaultSchemaConstraintValidator());
 			} else {
-				LOGGER.error("Specify valid mode");
+				LOGGER.error("Please specify valid mode");
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				parser.printUsage(outputStream);
 				LOGGER.error("Help: \n" + outputStream.toString());
+				return 3;
 			}
+			return 0;
 		} catch (CmdLineException e) {
 			LOGGER.error(e.getMessage());
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			parser.printUsage(outputStream);
 			LOGGER.error("Help: \n" + outputStream.toString());
+			return 1;
 		} catch (ValidatorException | GeneratorException | RetrofitException e) {
 			LOGGER.error(e.getMessage(), e);
+			return 2;
 		}
 	}
 }
