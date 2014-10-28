@@ -14,6 +14,7 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -28,6 +29,7 @@ public class SchemaFileSource implements SchemaSource {
 	private Validator validator = validatorFactory.getValidator();
 
 	private String path;
+	private InputStream inputStream;
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	static  {
@@ -36,7 +38,10 @@ public class SchemaFileSource implements SchemaSource {
 
 	public SchemaFileSource(String path) {
 		this.path = path;
+	}
 
+	public SchemaFileSource(InputStream inputStream) {
+		this.inputStream = inputStream;
 	}
 
 	public String getPath() {
@@ -48,14 +53,24 @@ public class SchemaFileSource implements SchemaSource {
 	}
 
 	@Override public ConfigSchema getSchema() throws GetException {
-		File source = new File(path);
 		try {
-			ConfigSchema schema = OBJECT_MAPPER.readValue(source, ConfigSchema.class);
+			ConfigSchema schema = parseSchema();
 			validate(schema);
 			return schema;
 		} catch (IOException e) {
 			LOGGER.debug("Cannot read schema data due to error " + e.getMessage(), e);
 			throw new GetException("Cannot read schema", e);
+		}
+	}
+
+	private ConfigSchema parseSchema() throws IOException, GetException {
+		if (path != null) {
+			File source = new File(path);
+			return OBJECT_MAPPER.readValue(source, ConfigSchema.class);
+		} else if (inputStream != null) {
+			return OBJECT_MAPPER.readValue(inputStream, ConfigSchema.class);
+		} else {
+			throw new GetException("Invalid input: no path or stream specified");
 		}
 	}
 
