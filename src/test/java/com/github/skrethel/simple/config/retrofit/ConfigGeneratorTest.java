@@ -1,5 +1,7 @@
 package com.github.skrethel.simple.config.retrofit;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.skrethel.simple.config.retrofit.exception.GeneratorException;
 import com.github.skrethel.simple.config.retrofit.exception.GetException;
 import com.github.skrethel.simple.config.retrofit.exception.WriteException;
@@ -18,6 +20,11 @@ public class ConfigGeneratorTest implements SchemaSource, ConfigWriter {
 
 	private Ini outputConfig;
 	private ConfigSchema schema;
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+	static  {
+		OBJECT_MAPPER.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+	}
 
 	@Test(expected = GeneratorException.class)
 	public void testEmptySchema() throws Exception {
@@ -62,6 +69,34 @@ public class ConfigGeneratorTest implements SchemaSource, ConfigWriter {
 			+ "[" + groupName3 + "]\n"
 			+ "#" + description3 + "\n"
 			+ name3 + " = 3\n\n";
+		assertEquals(expectedContent, getConfigAsString(outputConfig));
+
+	}
+
+	@Test
+	public void testFullGeneration() throws Exception {
+	String source = "\t[\n"
+		+ "\t{\n"
+		+ "\t\t\"group\": \"general\",\n"
+		+ "\t\t\"name\": \"values\",\n"
+		+ "\t\t\"description\": \" desc\",\n"
+		+ "\t\t\"default\": [\n"
+		+ "\t\t\t\"val1\",\n"
+		+ "\t\t\t\"val2\",\n"
+		+ "\t\t\t\"val3\"\n"
+		+ "\t\t]\n"
+		+ "\t}]";
+
+		schema = OBJECT_MAPPER.readValue(source, ConfigSchema.class);
+
+		Generator generator = new Generator();
+		generator.generate(this, this);
+
+		String expectedContent = "[" + "general" + "]\n"
+			+ "# desc" + "\n"
+			+ "values = val1\n"
+			+ "values = val2\n"
+			+ "values = val3\n\n";
 		assertEquals(expectedContent, getConfigAsString(outputConfig));
 
 	}

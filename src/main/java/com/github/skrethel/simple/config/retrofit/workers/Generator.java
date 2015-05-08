@@ -31,7 +31,7 @@ public class Generator {
 			for (SchemaItem item : schema) {
 				if (item.getDefaultValue() instanceof List) {
 					for (Object val : (List) item.getDefaultValue()) {
-						newIni.put(item.getGroup(), item.getName(), val);
+						newIni.add(item.getGroup(), item.getName(), val);
 					}
 				} else {
 					newIni.put(item.getGroup(), item.getName(), item.getDefaultValue());
