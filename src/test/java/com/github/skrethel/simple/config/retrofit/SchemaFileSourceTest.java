@@ -178,7 +178,7 @@ public class SchemaFileSourceTest {
 				+ "\"name\": \"option\","
 				+ "\"description\": \"Some\","
 				+ "\"default\": [1, 2],"
-				+ "\"constraints\": [ { \"type\": \"int\"}, {\"type\": \"min\", \"min\": 1}, {\"type\": \"max\", \"max\": 5} ]"
+				+ "\"constraints\": [ { \"type\": \"int\", \"min\": 1, \"max\": 5} ]"
 				+ "}]");
 		}
 

@@ -82,7 +82,7 @@ public class DefaultSchemaConstraintValidatorTest {
 	public void testValidMin() throws Exception {
 		ConfigSchema schema = new ConfigSchema();
 		Constraint constraint = new Constraint();
-		constraint.setType("min");
+		constraint.setType("int");
 		constraint.addParam("min", "3");
 		String group = "group";
 		String name = "name";
@@ -99,7 +99,7 @@ public class DefaultSchemaConstraintValidatorTest {
 	public void testInvalidMin() throws Exception {
 		ConfigSchema schema = new ConfigSchema();
 		Constraint constraint = new Constraint();
-		constraint.setType("min");
+		constraint.setType("int");
 		constraint.addParam("min", "3");
 		String group = "group";
 		String name = "name";
@@ -115,7 +115,7 @@ public class DefaultSchemaConstraintValidatorTest {
 	public void testValidMax() throws Exception {
 		ConfigSchema schema = new ConfigSchema();
 		Constraint constraint = new Constraint();
-		constraint.setType("max");
+		constraint.setType("int");
 		constraint.addParam("max", "3");
 		String group = "group";
 		String name = "name";
@@ -132,7 +132,7 @@ public class DefaultSchemaConstraintValidatorTest {
 	public void testInvalidMax() throws Exception {
 		ConfigSchema schema = new ConfigSchema();
 		Constraint constraint = new Constraint();
-		constraint.setType("max");
+		constraint.setType("int");
 		constraint.addParam("max", "3");
 		String group = "group";
 		String name = "name";
@@ -149,7 +149,7 @@ public class DefaultSchemaConstraintValidatorTest {
 	public void testValidateMultiValuedMax() throws Exception {
 		ConfigSchema schema = new ConfigSchema();
 		Constraint constraint = new Constraint();
-		constraint.setType("max");
+		constraint.setType("int");
 		constraint.addParam("max", "3");
 		String group = "group";
 		String name = "name";

@@ -132,7 +132,7 @@ public class RetrofitterTest implements ConfigSource, SchemaSource, ConfigWriter
 		String value2 = "23";
 		String description2 = " option_b comment";
 		Constraint constraint = new Constraint();
-		constraint.setType("max");
+		constraint.setType("int");
 		constraint.addParam("max", "3");
 		TestUtils.addIniItem(inputConfig, groupName2, name2, value2, description2);
 		TestUtils.addSchemaItem(schema, groupName2, name2, value2, description2, Arrays.asList(constraint));

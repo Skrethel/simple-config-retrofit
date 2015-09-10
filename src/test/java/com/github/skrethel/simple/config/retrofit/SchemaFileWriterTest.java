@@ -24,7 +24,7 @@ public class SchemaFileWriterTest {
 		item.setName("some");
 		item.setDefaultValue(1);
 		Constraint c = new Constraint();
-		c.setType("min");
+		c.setType("int");
 		HashMap<String, String> params = new HashMap<>();
 		params.put("min", "3");
 		c.setParams(params);
