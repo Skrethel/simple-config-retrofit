@@ -2,6 +2,7 @@ package com.github.skrethel.simple.config.retrofit.workers;
 
 import com.github.skrethel.simple.config.retrofit.constraint.SchemaConstraintValidator;
 import com.github.skrethel.simple.config.retrofit.exception.GetException;
+import com.github.skrethel.simple.config.retrofit.exception.InvalidDescriptionException;
 import com.github.skrethel.simple.config.retrofit.exception.RetrofitException;
 import com.github.skrethel.simple.config.retrofit.exception.ValidationException;
 import com.github.skrethel.simple.config.retrofit.exception.WriteException;
@@ -67,7 +68,7 @@ public class Retrofitter {
 
 			configWriter.write(config);
 
-		} catch (ValidationException | GetException | WriteException e) {
+		} catch (ValidationException | GetException | WriteException | InvalidDescriptionException e) {
 			throw new RetrofitException("Cannot execute retrofit: " + e.getMessage(), e);
 		}
 	}

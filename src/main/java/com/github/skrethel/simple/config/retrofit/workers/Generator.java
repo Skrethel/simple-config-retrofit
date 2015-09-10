@@ -2,6 +2,7 @@ package com.github.skrethel.simple.config.retrofit.workers;
 
 import com.github.skrethel.simple.config.retrofit.exception.GeneratorException;
 import com.github.skrethel.simple.config.retrofit.exception.GetException;
+import com.github.skrethel.simple.config.retrofit.exception.InvalidDescriptionException;
 import com.github.skrethel.simple.config.retrofit.exception.WriteException;
 import com.github.skrethel.simple.config.retrofit.io.ConfigSource;
 import com.github.skrethel.simple.config.retrofit.io.ConfigWriter;
@@ -41,7 +42,7 @@ public class Generator {
 				}
 			}
 			output.write(newIni);
-		} catch (GetException e) {
+		} catch (GetException | InvalidDescriptionException e) {
 			throw new GeneratorException("Cannot generate config file from schema: " + e.getMessage(), e);
 		} catch (WriteException e) {
 			throw new GeneratorException("Cannot write config file generated from schema: " + e.getMessage(), e);

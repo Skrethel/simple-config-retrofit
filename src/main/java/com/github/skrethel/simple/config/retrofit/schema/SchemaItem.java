@@ -2,6 +2,8 @@ package com.github.skrethel.simple.config.retrofit.schema;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.skrethel.simple.config.retrofit.exception.InvalidDescriptionException;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -23,7 +25,7 @@ public class SchemaItem {
 	private Object defaultValue;
 
 	@JsonProperty(value = "description", required = true)
-	private String description;
+	private Object description;
 
 	@JsonProperty(value = "constraints", required = true)
 	private List<Constraint> constraints;
@@ -44,11 +46,23 @@ public class SchemaItem {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDescription() throws InvalidDescriptionException {
+		if (description == null) {
+			return null;
+		}
+		if (description instanceof List) {
+			return StringUtils.join((List)description, "\n");
+		}
+		if (description instanceof String) {
+			return (String)description;
+		}
+		if (description instanceof String[]) {
+			return StringUtils.join((String[])description, "\n");
+		}
+		throw new InvalidDescriptionException("Description for item " + name + " from group " + group + " is invalid");
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(Object description) {
 		this.description = description;
 	}
 

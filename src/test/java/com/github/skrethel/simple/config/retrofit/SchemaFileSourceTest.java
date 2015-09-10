@@ -170,8 +170,6 @@ public class SchemaFileSourceTest {
 		File tmpFile = File.createTempFile("testGet", ".json");
 		tmpFile.deleteOnExit();
 
-		String groupName = "some_group";
-		String name = "some_name";
 		try (FileWriter writer = new FileWriter(tmpFile)) {
 			writer.write("[{"
 				+ "\"group\": \"abc\","
@@ -184,5 +182,29 @@ public class SchemaFileSourceTest {
 
 		SchemaFileSource source = new SchemaFileSource(tmpFile.getAbsolutePath());
 		ConfigSchema schema = source.getSchema();
+	}
+
+	@Test
+	public void testMultilineDescription() throws Exception {
+		File tmpFile = File.createTempFile("testGet", ".json");
+		tmpFile.deleteOnExit();
+
+		String group = "abc";
+		String name = "option";
+		try (FileWriter writer = new FileWriter(tmpFile)) {
+			writer.write("[{"
+				+ "\"group\": \""+ group + "\","
+				+ "\"name\": \"" + name + "\","
+				+ "\"description\": [\"Some\", \"lines\"],"
+				+ "\"default\": [1, 2],"
+				+ "\"constraints\": [ { \"type\": \"int\", \"min\": 1, \"max\": 5} ]"
+				+ "}]");
+		}
+
+		SchemaFileSource source = new SchemaFileSource(tmpFile.getAbsolutePath());
+		ConfigSchema schema = source.getSchema();
+		SchemaItem item = schema.get(group, name);
+
+		assertEquals(item.getDescription(), "Some\nlines");
 	}
 }
