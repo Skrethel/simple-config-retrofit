@@ -7,7 +7,7 @@ public class MinMaxUtils {
 
 	public static void validateMax(long value, long max) throws ValidationException {
 		if (value > max) {
-			throw new ValidationException("Value " + value + " is lower than allowed maximum " + max);
+			throw new ValidationException("Value " + value + " is bigger than allowed maximum " + max);
 		}
 	}
 
