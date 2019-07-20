@@ -6,6 +6,7 @@ import com.github.skrethel.simple.config.retrofit.schema.ConfigSchema;
 import com.github.skrethel.simple.config.retrofit.schema.Constraint;
 import com.github.skrethel.simple.config.retrofit.schema.SchemaItem;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.ini4j.Ini;
 
 import java.io.File;
@@ -21,7 +22,7 @@ public class TestUtils {
 		ConfigFileWriter writer = new ConfigFileWriter(tmpFile.getAbsolutePath());
 		writer.write(ini);
 
-		return FileUtils.readFileToString(tmpFile);
+		return StringUtils.replace(FileUtils.readFileToString(tmpFile), "\r\n", "\n");
 	}
 
 	static void addIniItem(Ini ini, String group, String name, String value, String comment) {
