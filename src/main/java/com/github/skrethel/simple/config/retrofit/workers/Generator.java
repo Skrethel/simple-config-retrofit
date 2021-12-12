@@ -10,7 +10,6 @@ import com.github.skrethel.simple.config.retrofit.io.SchemaSource;
 import com.github.skrethel.simple.config.retrofit.io.SchemaWriter;
 import com.github.skrethel.simple.config.retrofit.schema.ConfigSchema;
 import com.github.skrethel.simple.config.retrofit.schema.SchemaItem;
-import org.apache.log4j.Logger;
 import org.ini4j.Ini;
 import org.ini4j.Profile;
 
@@ -19,8 +18,6 @@ import java.util.Map;
 
 
 public class Generator {
-
-	private static final Logger LOGGER = Logger.getLogger(Generator.class);
 
 	public void generate(SchemaSource source, ConfigWriter output) throws GeneratorException {
 		try {

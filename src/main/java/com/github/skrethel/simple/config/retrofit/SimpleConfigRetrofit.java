@@ -12,7 +12,8 @@ import com.github.skrethel.simple.config.retrofit.io.SchemaFileWriter;
 import com.github.skrethel.simple.config.retrofit.workers.Generator;
 import com.github.skrethel.simple.config.retrofit.workers.Retrofitter;
 import com.github.skrethel.simple.config.retrofit.workers.Validator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
@@ -21,7 +22,7 @@ import java.io.ByteArrayOutputStream;
 
 
 public class SimpleConfigRetrofit {
-	private static final Logger LOGGER = Logger.getLogger(SimpleConfigRetrofit.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SimpleConfigRetrofit.class);
 
 	@Option(name = "-r", usage = "retrofit mode", forbids = {"-m", "-k", "-v"}, depends = {"-s", "-c", "-o"})
 	private boolean retrofitMode = false;
@@ -62,6 +63,7 @@ public class SimpleConfigRetrofit {
 			parser.parseArgument(args);
 			if (verbose) {
 				LogConfig.verboseConfig();
+				LOGGER.debug("Enabling verbose mode");
 			}
 			if (help) {
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

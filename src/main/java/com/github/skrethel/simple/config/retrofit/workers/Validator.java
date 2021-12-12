@@ -7,13 +7,10 @@ import com.github.skrethel.simple.config.retrofit.exception.ValidatorException;
 import com.github.skrethel.simple.config.retrofit.io.ConfigSource;
 import com.github.skrethel.simple.config.retrofit.io.SchemaSource;
 import com.github.skrethel.simple.config.retrofit.schema.ConfigSchema;
-import org.apache.log4j.Logger;
 import org.ini4j.Ini;
 
 
 public class Validator {
-
-	private static final Logger LOGGER = Logger.getLogger(Validator.class);
 
 	public void validate(ConfigSource configSource, SchemaSource schemaSource,
 		SchemaConstraintValidator validator) throws ValidatorException {

@@ -4,7 +4,8 @@ import com.github.skrethel.simple.config.retrofit.exception.ValidationException;
 import com.github.skrethel.simple.config.retrofit.schema.ConfigSchema;
 import com.github.skrethel.simple.config.retrofit.schema.Constraint;
 import com.github.skrethel.simple.config.retrofit.schema.SchemaItem;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.ini4j.Ini;
 import org.ini4j.Profile;
 
@@ -17,7 +18,7 @@ import java.util.ServiceLoader;
 
 
 public class DefaultSchemaConstraintValidator implements SchemaConstraintValidator {
-	private static final Logger LOGGER = Logger.getLogger(DefaultSchemaConstraintValidator.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultSchemaConstraintValidator.class);
 
 	@Override public void validate(ConfigSchema schema, Ini config) throws ValidationException {
 		Map<String, ConstraintValidator> validators = collectValidators();

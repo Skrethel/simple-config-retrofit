@@ -1,18 +1,16 @@
 package com.github.skrethel.simple.config.retrofit;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
 
 
 public class LogConfig {
 
 	public static void defaultConfig() {
-		Logger logger = Logger.getRootLogger();
-		logger.setLevel(Level.INFO);
+		Configurator.setRootLevel(Level.INFO);
 	}
 
 	public static void verboseConfig() {
-		Logger logger = Logger.getRootLogger();
-		logger.setLevel(Level.DEBUG);
+		Configurator.setRootLevel(Level.DEBUG);
 	}
 }

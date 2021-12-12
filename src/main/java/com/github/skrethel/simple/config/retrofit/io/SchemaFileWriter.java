@@ -4,13 +4,14 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.skrethel.simple.config.retrofit.exception.WriteException;
 import com.github.skrethel.simple.config.retrofit.schema.ConfigSchema;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
 
 public class SchemaFileWriter implements SchemaWriter {
-	private static final Logger LOGGER = Logger.getLogger(SchemaFileWriter.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaFileWriter.class);
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private final String schemaFile;
 

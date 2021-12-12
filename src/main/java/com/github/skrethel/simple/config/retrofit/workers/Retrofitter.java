@@ -11,7 +11,8 @@ import com.github.skrethel.simple.config.retrofit.io.ConfigWriter;
 import com.github.skrethel.simple.config.retrofit.io.SchemaSource;
 import com.github.skrethel.simple.config.retrofit.schema.ConfigSchema;
 import com.github.skrethel.simple.config.retrofit.schema.SchemaItem;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.ini4j.Ini;
 import org.ini4j.Profile;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 
 
 public class Retrofitter {
-	private static final Logger LOGGER = Logger.getLogger(Retrofitter.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Retrofitter.class);
 
 	public void retrofit(ConfigSource configSource, SchemaSource schemaSource,
 		ConfigWriter configWriter, SchemaConstraintValidator validator) throws RetrofitException {

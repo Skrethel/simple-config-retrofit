@@ -1,7 +1,8 @@
 package com.github.skrethel.simple.config.retrofit.io;
 
 import com.github.skrethel.simple.config.retrofit.exception.GetException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.ini4j.Ini;
 
 import java.io.File;
@@ -9,7 +10,7 @@ import java.io.IOException;
 
 
 public class ConfigFileSource implements ConfigSource {
-	private static final Logger LOGGER = Logger.getLogger(ConfigFileSource.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConfigFileSource.class);
 
 	private String path;
 

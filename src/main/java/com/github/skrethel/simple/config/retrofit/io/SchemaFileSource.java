@@ -6,7 +6,8 @@ import com.github.skrethel.simple.config.retrofit.exception.GetException;
 import com.github.skrethel.simple.config.retrofit.schema.ConfigSchema;
 import com.github.skrethel.simple.config.retrofit.schema.SchemaItem;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -21,7 +22,7 @@ import java.util.Set;
 
 public class SchemaFileSource implements SchemaSource {
 
-	private static final Logger LOGGER = Logger.getLogger(SchemaFileSource.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaFileSource.class);
 
 	private ValidatorFactory validatorFactory = Validation.byDefaultProvider()
 		.configure()
